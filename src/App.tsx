@@ -1,9 +1,55 @@
+import React, { useState } from 'react';
+
 function App() {
+  // State สำหรับจัดการ popup
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [newTask, setNewTask] = useState(""); // เก็บข้อความใหม่ที่พิมพ์ลงใน input
+  const [tasks, setTasks] = useState<string[]>([]); // เก็บรายการ tasks
+
+  // ฟังก์ชันสำหรับเปิด popup
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  // ฟังก์ชันสำหรับปิด popup
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  // ฟังก์ชันสำหรับจัดการคลิกนอกกล่อง popup
+  const handleClickOutside = (event: React.MouseEvent) => {
+    const popupElement = document.getElementById("popup-container");
+    if (popupElement && !popupElement.contains(event.target as Node)) {
+      closePopup(); // ถ้าคลิกนอกกล่อง popup ให้ปิดมัน
+    }
+  };
+
+  // ฟังก์ชันสำหรับเพิ่ม task ลงในรายการ
+  const addTask = () => {
+    if (newTask.trim()) {
+      setTasks([...tasks, newTask]); // เพิ่ม task ใหม่ลงใน tasks
+      setNewTask(""); // ล้างข้อความ input
+      closePopup(); // ปิด popup หลังจากเพิ่ม task
+    }
+  };
+
+  // ฟังก์ชันสำหรับจับการกดปุ่ม Enter
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      addTask(); // เมื่อกด Enter ให้เพิ่ม task
+    }
+  };
+
   return (
-    <div>
-      <div className="relative flex min-h-screen items-center justify-center gap-5">
-        <div className="absolute inset-0 z-[1] flex items-center justify-center bg-black/50">
-          <div className="mx-5 h-[20.5rem] w-96 rounded-lg bg-white">
+    <div className="relative flex min-h-screen items-center justify-center gap-5">
+
+      {/* ส่วนของ Popup */}
+      {isPopupOpen && (
+        <div
+          className="absolute inset-0 z-[1] flex items-center justify-center bg-black/50"
+          onClick={handleClickOutside} // เมื่อคลิกนอกกล่อง popup จะปิด
+        >
+          <div id="popup-container" className="mx-5 h-[20.5rem] w-96 rounded-lg bg-white">
             <div className="ml-6 mt-6 flex h-14 w-14 items-center justify-center rounded-lg border-[1px] border-gray-300 p-2 shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,71 +74,52 @@ function App() {
               <input
                 type="text"
                 placeholder="New Task"
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)} // อัปเดตค่า newTask ตามที่พิมพ์
+                onKeyDown={handleKeyDown} // จับการกดปุ่มบนคีย์บอร์ด
                 className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </form>
             <div className="mx-6 flex justify-end">
-              <button className="rounded-lg bg-purple-600 px-5 py-3 font-bold text-white hover:bg-purple-700 active:bg-purple-800">
+              <button
+                onClick={addTask} // เมื่อกดปุ่มนี้ให้เพิ่ม task
+                className="rounded-lg bg-purple-600 px-5 py-3 font-bold text-white hover:bg-purple-700 active:bg-purple-800"
+              >
                 Add Task <span className="text-2xl">+</span>
               </button>
             </div>
           </div>
         </div>
+      )}
 
-        <div className="mx-5 flex flex-col gap-5">
-          <div className="flex justify-end">
-            <button className="rounded-xl bg-purple-600 p-3 text-base font-bold text-white hover:bg-purple-700 active:bg-purple-800 md:text-xl">
-              Add Task <span className="text-2xl">+</span>
-            </button>
-          </div>
+      {/* ส่วนของเนื้อหาหลัก */}
+      <div className="mx-5 flex flex-col gap-5">
+        <div className="flex justify-end">
+          <button
+            className="rounded-xl bg-purple-600 p-3 text-base font-bold text-white hover:bg-purple-700 active:bg-purple-800 md:text-xl"
+            onClick={openPopup} // เมื่อกดปุ่มนี้จะเปิด popup
+          >
+            Add Task <span className="text-2xl">+</span>
+          </button>
+        </div>
 
-          <div className="mx-auto flex flex-col items-start justify-start gap-5 rounded-xl bg-white p-10 text-base drop-shadow-xl md:text-xl">
-            <div className="flex items-baseline gap-3">
-              <input type="checkbox" id="task1" className="peer" />
-              <label
-                htmlFor="task1"
-                className="peer-checked:text-gray-400 peer-checked:line-through"
-              >
-                launch madbeku - to do list on producthunt 🚀
-              </label>
-            </div>
-            <div className="flex items-baseline gap-3">
-              <input type="checkbox" id="task2" className="peer" />
-              <label
-                htmlFor="task2"
-                className="peer-checked:text-gray-400 peer-checked:line-through"
-              >
-                schedule a zoom call with design team
-              </label>
-            </div>
-            <div className="flex items-baseline gap-3">
-              <input type="checkbox" id="task3" className="peer" />
-              <label
-                htmlFor="task3"
-                className="peer-checked:text-gray-400 peer-checked:line-through"
-              >
-                push latest plooto OCR visual to zeplin
-              </label>
-            </div>
-            <div className="flex items-baseline gap-3">
-              <input type="checkbox" id="task4" className="peer" />
-              <label
-                htmlFor="task4"
-                className="peer-checked:text-gray-400 peer-checked:line-through"
-              >
-                UI cards animation for website
-              </label>
-            </div>
-            <div className="flex items-baseline gap-3">
-              <input type="checkbox" id="task5" className="peer" />
-              <label
-                htmlFor="task5"
-                className="peer-checked:text-gray-400 peer-checked:line-through"
-              >
-                reply to emails
-              </label>
-            </div>
-          </div>
+        {/* แสดงรายการ Task หรือแสดงข้อความว่า "Don't have list to do" หากยังไม่มี task */}
+        <div className="mx-auto flex flex-col items-start justify-start gap-5 rounded-xl bg-white p-10 text-base drop-shadow-xl md:text-xl">
+          {tasks.length === 0 ? (
+            <p className="text-center text-gray-500">To-do list is empty. 😊 </p>
+          ) : (
+            tasks.map((task, index) => (
+              <div key={index} className="flex items-baseline gap-3">
+                <input type="checkbox" id={`task${index}`} className="peer" />
+                <label
+                  htmlFor={`task${index}`}
+                  className="peer-checked:text-gray-400 peer-checked:line-through"
+                >
+                  {task}
+                </label>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
