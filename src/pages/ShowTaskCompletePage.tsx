@@ -15,6 +15,24 @@ function ShowTaskCompletePage() {
         <div className="bg-yellow-500 text-center rounded-lg">
           <h1>box 4</h1>
         </div>
+        <div className="bg-yellow-500 text-center rounded-lg">
+          <h1>box 5</h1>
+        </div>
+        <div className="bg-yellow-500 text-center rounded-lg">
+          <h1>box 6</h1>
+        </div>
+        <div className="bg-yellow-500 text-center rounded-lg">
+          <h1>box 7</h1>
+        </div>
+        <div className="bg-yellow-500 text-center rounded-lg">
+          <h1>box 8</h1>
+        </div>
+        <div className="bg-yellow-500 text-center rounded-lg">
+          <h1>box 9</h1>
+        </div>
+        <div className="bg-yellow-500 text-center rounded-lg">
+          <h1>box 10</h1>
+        </div>
       </div>
     </div>
   )
