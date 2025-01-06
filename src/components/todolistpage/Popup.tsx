@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 type PopupProps = {
   isPopupOpen: boolean;
@@ -11,12 +11,11 @@ type PopupProps = {
 
 function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: PopupProps){
 
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      addTask(); // Add task when Enter is pressed
-    }
-  };
+  // const handleKeyDown = (event: React.KeyboardEvent) => {
+  //   if (event.key === "Enter") {
+  //     addTask(); // Add task when Enter is pressed
+  //   }
+  // };
 
   const handleClickOutside = (event: React.MouseEvent) => {
     const popupElement = document.getElementById("popup-container");
@@ -27,6 +26,13 @@ function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: Popup
 
   if (!isPopupOpen) return null;
 
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent form submission
+    addTask(); // Call addTask function
+  };
+
+  // console.log(1)
+  // console.log(newTask)
 
   return (
     <div
@@ -71,30 +77,40 @@ function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: Popup
           <h2 className="pb-1 text-xl font-extrabold">To do list</h2>
           <p className="text-base text-slate-700">Please enter a task name to do.</p>
         </div>
-        <form action="submit" className="m-6">
+        <form onSubmit={handleSubmit} className="m-6">
           <input
             type="text"
             placeholder="New Task"
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)} // Update newTask value
-            onKeyDown={handleKeyDown} // Handle Enter key
+            //onKeyDown={handleKeyDown} // Handle Enter key
             className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          <div className="mt-4 flex justify-end">
+            <button
+              //onClick={addTask} // Add task when button is clicked
+              type="submit"
+              className="rounded-lg text-lg bg-purple-600 px-5 py-3 font-bold text-white hover:bg-purple-700 active:bg-purple-800"
+            >
+              Add Task <span className="text-2xl">+</span>
+            </button>
+          </div>
         </form>
-        <div className="mx-6 flex justify-end">
+        {/* <div className="mx-6 flex justify-end">
           <button
             onClick={addTask} // Add task when button is clicked
             className="rounded-lg bg-purple-600 px-5 py-3 font-bold text-white hover:bg-purple-700 active:bg-purple-800"
           >
             Add Task <span className="text-2xl">+</span>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
 
-export default Popup;
+const PopupMemo = memo(Popup);
+export default PopupMemo;
 
 
 

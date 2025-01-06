@@ -55,9 +55,9 @@
 
 
 import { useState } from "react";
-import Popup from "../components/todolistpage/Popup";
 import AddTaskButton from "../components/todolistpage/AddTaskButton";
 import TaskList from "../components/todolistpage/TaskList";
+import PopupMemo from "../components/todolistpage/Popup";
 
 export interface TasksType {
   id: number;
@@ -95,7 +95,7 @@ function ToDoListPage() {
   return (
     <div className="relative flex min-h-screen items-center justify-center gap-5">
       {/* Popup Component */}
-      <Popup
+      <PopupMemo
         isPopupOpen={isPopupOpen}
         closePopup={closePopup}
         newTask={newTask}
