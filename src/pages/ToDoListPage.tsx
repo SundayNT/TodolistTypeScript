@@ -54,20 +54,23 @@
 // export default ToDoListPage;
 
 
-import { useState } from "react";
+
+import { useContext, useState } from "react";
 import AddTaskButton from "../components/todolistpage/AddTaskButton";
 import TaskList from "../components/todolistpage/TaskList";
 import PopupMemo from "../components/todolistpage/Popup";
+import { TasksContext } from "../components/context/TaskContext";
 
-export interface TasksType {
-  id: number;
-  message: string;
-}
+// export interface TasksType {
+//   id: number;
+//   message: string;
+// }
 
 function ToDoListPage() {
+    const {tasks, setTasks} = useContext(TasksContext); 
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [newTask, setNewTask] = useState(""); // Store new task input
-    const [tasks, setTasks] = useState<TasksType[]>([]); // Store task list
+    //const [tasks, setTasks] = useState<TasksType[]>([]); // Store task list
 
   // Open popup
   const openPopup = () => {
@@ -84,7 +87,8 @@ function ToDoListPage() {
     if (newTask.trim()) {
       const newTaskType = {
         id: Date.now(), // or use another method to generate unique IDs
-        message: newTask
+        message: newTask,
+        completed: false // Newly added task will be uncompleted
       }
       setTasks([...tasks, newTaskType]);
       setNewTask(""); // Clear input after adding task
@@ -109,7 +113,7 @@ function ToDoListPage() {
         <AddTaskButton openPopup={openPopup} />
 
         {/* Task List Component */}
-        <TaskList tasks={tasks} />
+        <TaskList  />
       </div>
     </div>
   )

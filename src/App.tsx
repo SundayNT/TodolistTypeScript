@@ -64,8 +64,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-        <Route index element={<ShowTaskCompletePage />} />
-        <Route path="to-do-list" element={<ToDoListPage />} />
+          <Route index element={<ShowTaskCompletePage />} />
+          <Route path="to-do-list" element={<ToDoListPage />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
