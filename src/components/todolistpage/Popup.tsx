@@ -90,7 +90,7 @@ function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: Popup
             <button
               //onClick={addTask} // Add task when button is clicked
               type="submit"
-              className="rounded-lg text-lg bg-purple-600 px-5 py-3 font-bold text-white hover:bg-purple-700 active:bg-purple-800"
+              className="rounded-lg text-lg px-5 py-3 font-bold text-white bg-gradient-to-r from-[#00C1D0] to-[#14469F] hover:from-[#38AECC] hover:to-[#022F40]"
             >
               Add Task <span className="text-2xl">+</span>
             </button>
