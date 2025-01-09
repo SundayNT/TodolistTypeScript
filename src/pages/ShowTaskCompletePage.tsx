@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { TasksContext } from "../components/context/TaskContext";
 
 function ShowTaskCompletePage() {
-  const {tasks} = useContext(TasksContext);
+  const {tasks, undoTaskCompletion} = useContext(TasksContext);
 
   // Filter completed tasks
   const completedTasks = tasks.filter((task) => task.completed);
@@ -16,7 +16,7 @@ function ShowTaskCompletePage() {
               key={task.id}
               className="flex py-5 w-full flex-col items-center justify-center rounded-lg bg-gray-200 p-2 text-center drop-shadow-lg"
             >
-              <div className="mb-2 flex w-full justify-start pl-5">
+              <div className="mb-2 flex w-full justify-between px-5">
                 <div className="flex items-center gap-2 bg-gradient-to-r from-[#78e746] to-[#44b80a] px-3 py-1 rounded-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +34,9 @@ function ShowTaskCompletePage() {
                     />
                   </svg>
                   <p className="text-xl font-bold text-white">Completed</p>
+                </div>
+                <div className="flex items-center gap-2 bg-gradient-to-r from-[#577BC1] to-[#38AECC] p-3 text-base font-bold text-white hover:from-[#14469F] hover:to-[#00C1D0] px-3 py-1 rounded-full">
+                  <button onClick={() => undoTaskCompletion(task.id)} className="text-xl font-bold text-white">Undo</button>
                 </div>
               </div>
 
