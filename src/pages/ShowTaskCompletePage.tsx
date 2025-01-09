@@ -14,7 +14,7 @@ function ShowTaskCompletePage() {
           {completedTasks.map((task) => (
             <div
               key={task.id}
-              className="flex w-full flex-col items-center justify-center rounded-lg bg-gray-200 p-2 text-center drop-shadow-lg"
+              className="flex py-5 w-full flex-col items-center justify-center rounded-lg bg-gray-200 p-2 text-center drop-shadow-lg"
             >
               <div className="mb-2 flex w-full justify-start pl-5">
                 <div className="flex items-center gap-2 bg-gradient-to-r from-[#78e746] to-[#44b80a] px-3 py-1 rounded-full">
@@ -43,7 +43,7 @@ function ShowTaskCompletePage() {
         </div>
       ) : (
         <p className="text-center text-4xl font-bold text-gray-700">
-          The to-do list is complete. 😊{" "}
+          The to-do list is complete. 😊
         </p>
       )}
     </div>

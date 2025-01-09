@@ -8,9 +8,7 @@ type PopupProps = {
   addTask: () => void;
 };
 
-
-function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: PopupProps){
-
+function Popup({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: PopupProps) {
   // const handleKeyDown = (event: React.KeyboardEvent) => {
   //   if (event.key === "Enter") {
   //     addTask(); // Add task when Enter is pressed
@@ -90,7 +88,7 @@ function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: Popup
             <button
               //onClick={addTask} // Add task when button is clicked
               type="submit"
-              className="rounded-lg text-lg px-5 py-3 font-bold text-white bg-gradient-to-r from-[#00C1D0] to-[#14469F] hover:from-[#38AECC] hover:to-[#022F40]"
+              className="rounded-lg bg-gradient-to-r from-[#00C1D0] to-[#14469F] px-5 py-3 text-lg font-bold text-white transition duration-150 ease-in-out hover:-translate-x-1 hover:scale-110 hover:from-[#38AECC] hover:to-[#022F40]"
             >
               Add Task <span className="text-2xl">+</span>
             </button>
@@ -107,10 +105,7 @@ function Popup ({ isPopupOpen, closePopup, newTask, setNewTask, addTask }: Popup
       </div>
     </div>
   );
-};
+}
 
 const PopupMemo = memo(Popup);
 export default PopupMemo;
-
-
-

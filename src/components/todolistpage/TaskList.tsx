@@ -19,7 +19,7 @@ import { TasksContext } from "../context/TaskContext";
     }
 
     return (
-      <div className="flex flex-col max-h-56 max-w-xl overflow-auto gap-5 rounded-xl bg-white p-10 text-base drop-shadow-xl md:text-xl">
+      <div className="flex flex-col max-h-72 max-w-xl overflow-auto gap-5 rounded-xl bg-white p-10 text-base drop-shadow-xl md:text-xl">
         {tasks.length === 0 ? (
           <p className="text-center text-gray-500">To-do list is empty. 😊 </p>
         ) : (
