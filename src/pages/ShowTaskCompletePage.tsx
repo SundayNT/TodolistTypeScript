@@ -14,18 +14,18 @@ function ShowTaskCompletePage() {
           {completedTasks.map((task) => (
             <div
               key={task.id}
-              className="flex h-28 w-full flex-col items-center justify-center overflow-auto rounded-lg bg-gray-200 p-2 text-center drop-shadow-lg"
+              className="flex w-full flex-col items-center justify-center rounded-lg bg-gray-200 p-2 text-center drop-shadow-lg"
             >
               <div className="mb-2 flex w-full justify-start pl-5">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-gradient-to-r from-[#78e746] to-[#44b80a] px-3 py-1 rounded-full">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     stroke="currentColor"
                     className="size-6"
-                    color="#5CB338"
+                    color="white"
                   >
                     <path
                       strokeLinecap="round"
@@ -33,7 +33,7 @@ function ShowTaskCompletePage() {
                       d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                     />
                   </svg>
-                  <p className="text-xl font-bold text-[#5CB338]">Finished</p>
+                  <p className="text-xl font-bold text-white">Completed</p>
                 </div>
               </div>
 
