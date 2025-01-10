@@ -35,7 +35,7 @@ function ShowTaskCompletePage() {
                   </svg>
                   <p className="text-xl font-bold text-white">Completed</p>
                 </div>
-                <div className="flex items-center gap-2 bg-gradient-to-r from-[#577BC1] to-[#38AECC] p-3 text-base font-bold text-white hover:from-[#14469F] hover:to-[#00C1D0] px-3 py-1 rounded-full">
+                <div className="flex items-center gap-2 bg-gradient-to-r from-[#14469F] to-[#00C1D0] p-3 text-base font-bold text-white hover:from-[#3E5879] hover:to-[#00C1D0] px-3 py-1 rounded-full">
                   <button onClick={() => undoTaskCompletion(task.id)} className="text-xl font-bold text-white">Undo</button>
                 </div>
               </div>
